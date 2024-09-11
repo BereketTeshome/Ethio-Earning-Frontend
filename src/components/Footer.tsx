@@ -2,10 +2,16 @@ import Link from "next/link";
 import Image from "next/image";
 import React from "react";
 import { Container } from "@/components/Container";
-
+import { useSelector } from "react-redux";
 export function Footer() {
-  const navigation = ["Product", "Features", "Pricing", "Company", "Blog"];
+  const language = useSelector((state: any) => state.language.language);
+  const navigation = ["Product", "Features", "Pricing", "Company", "News"];
+  const navigationAmharic = ["ምርት", "ባህሪያት", "ዋጋ", "ስለ እኛ", "አዲስ ዜና"];
   const legal = ["Terms", "Privacy", "Legal"];
+  const legalAmharic = ["ውሎች", "ግላዊነት", "ህጋዊ"];
+  const currentNavigation = language === "eng" ? navigation : navigationAmharic;
+  const legalNavigation = language === "eng" ? legal : legalAmharic;
+
   return (
     <div className="relative">
       <Container>
@@ -22,17 +28,16 @@ export function Footer() {
                   alt="Logo"
                   width="32"
                   height="32"
-                  className="w-8"
+                  className="w-20"
                 />
                 <span>Ethio Earning</span>
               </Link>
             </div>
 
             <div className="max-w-md mt-4 text-gray-500 dark:text-gray-400">
-              Ethio Earning is an free Advertising Platform with distinct user
-              roles: Investor, Earner, and System Administrator. The platform
-              leverages modern technologies for enhanced performance, security,
-              and user experience.
+              {language === "eng"
+                ? "Ethio Earning is an free Advertising Platform with distinct user roles: Investor, Earner, and System Administrator. The platform leverages modern technologies for enhanced performance, security, and user experience."
+                : "Ethio Earning የተለየ የተጠቃሚ ሚናዎች ያሉት ነፃ የማስታወቂያ መድረክ ነው፡ ባለሀብት፣ ገቢ እና የስርዓት አስተዳዳሪ። መድረኩ ዘመናዊ ቴክኖሎጂዎችን ለተሻሻለ አፈጻጸም፣ ደህንነት እና የተጠቃሚ ተሞክሮ ይጠቀማል።"}
             </div>
 
             {/* <div className="mt-5">
@@ -54,7 +59,7 @@ export function Footer() {
 
           <div>
             <div className="flex flex-wrap w-full -mt-2 -ml-3 lg:ml-0">
-              {navigation.map((item, index) => (
+              {currentNavigation.map((item, index) => (
                 <Link
                   key={index}
                   href="/"
@@ -67,7 +72,7 @@ export function Footer() {
           </div>
           <div>
             <div className="flex flex-wrap w-full -mt-2 -ml-3 lg:ml-0">
-              {legal.map((item, index) => (
+              {legalNavigation.map((item, index) => (
                 <Link
                   key={index}
                   href="/"
