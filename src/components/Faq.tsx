@@ -7,8 +7,53 @@ import {
   DisclosurePanel,
 } from "@headlessui/react";
 import { ChevronUpIcon } from "@heroicons/react/24/solid";
+import { useSelector } from "react-redux";
 
 export const Faq = () => {
+  const language = useSelector((state: any) => state.language.language);
+  const faqdata = [
+    {
+      question:
+        language === "eng"
+          ? "What payment methods are supported for transactions?"
+          : "ለግብይቶች ምን ዓይነት የመክፈያ ዘዴዎች ይደገፋሉ?",
+      answer:
+        language === "eng"
+          ? "The platform supports ETB payments via Chapa and USD payments via Stripe for deposits, package purchases, and coin conversions."
+          : "መድረኩ ለተቀማጭ ገንዘብ፣ ለጥቅል ግዢ እና ለሳንቲም ልወጣዎች በStripe በኩል የETB ክፍያዎችን በቻፓ እና የአሜሪካ ዶላር ይደግፋል።",
+    },
+    {
+      question:
+        language === "eng"
+          ? "How does the referral system work for Investors?"
+          : "የሪፈራል ስርዓቱ ለኢንቨስተሮች እንዴት ይሰራል?",
+      answer:
+        language === "eng"
+          ? "Investors get unique referral links to share. When someone signs up through their link, they earn coins, which can be converted to currency."
+          : "ባለሀብቶች ለማጋራት ልዩ የማጣቀሻ አገናኞችን ያገኛሉ። አንድ ሰው በአገናኝ መንገዱ ሲመዘገብ, ሳንቲሞች ያገኛሉ, ይህም ወደ ምንዛሪ ሊለወጥ ይችላል",
+    },
+    {
+      question:
+        language === "eng"
+          ? "What is your refund policy?"
+          : "የተመላሽ ገንዘብ ፖሊሲው እንዴት ነው?",
+      answer:
+        language === "eng"
+          ? "If you're unhappy with your purchase for any reason, email us within 90 days and we'll refund you in full, no questions asked."
+          : "በማንኛውም ምክንያት በግዢዎ ደስተኛ ካልሆኑ በ90 ቀናት ውስጥ ኢሜይል ያድርጉልን እና ሙሉ ገንዘብ እንመልስልዎታለን፣ ምንም ጥያቄዎች አልተጠየቁም።",
+    },
+    {
+      question:
+        language === "eng"
+          ? "Do you offer technical support?"
+          : "የቴክኒክ ድጋፍ ይሰጣሉ?",
+      answer:
+        language === "eng"
+          ? "Yes, we do offer technical support."
+          : "አዎ, የቴክኒክ ድጋፍ እንሰጣለን",
+    },
+  ];
+
   return (
     <Container className="!p-0">
       <div className="w-full max-w-2xl p-2 mx-auto rounded-2xl">
@@ -37,26 +82,3 @@ export const Faq = () => {
     </Container>
   );
 };
-
-const faqdata = [
-  {
-    question:
-      "What payment methods are supported for transactions on the platform?",
-    answer:
-      "The platform supports ETB payments via Chapa and USD payments via Stripe for deposits, package purchases, and coin conversions.",
-  },
-  {
-    question: "How does the referral system work for Investors?",
-    answer:
-      "Investors get unique referral links to share. When someone signs up through their link, they earn coins, which can be converted to currency.",
-  },
-  {
-    question: "What is your refund policy? ",
-    answer:
-      "If you're unhappy with your purchase for any reason, email us within 90 days and we'll refund you in full, no questions asked.",
-  },
-  {
-    question: "Do you offer technical support? ",
-    answer: "Yes, we do offer technical support",
-  },
-];
