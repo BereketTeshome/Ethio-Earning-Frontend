@@ -5,6 +5,7 @@ import Image from "next/image";
 import { Disclosure } from "@headlessui/react";
 import { useSelector, useDispatch } from "react-redux";
 import { changeLanguage, Language } from "@/store/LanguageSlice";
+import { SignInButton, SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
 
 export const Navbar = () => {
   const language = useSelector(
@@ -12,10 +13,13 @@ export const Navbar = () => {
   );
   const dispatch = useDispatch();
 
-  const navigation = ["Product", "Features", "Pricing", "Company", "News"];
-  const navigationAmharic = ["ምርት", "ባህሪያት", "ዋጋ", "ስለ እኛ", "አዲስ ዜና"];
-
-  const currentNavigation = language === "eng" ? navigation : navigationAmharic;
+  const navigation = [
+    { eng: "Product", amh: "ምርት", link: "/product" },
+    { eng: "Features", amh: "ባህሪያት", link: "/features" },
+    { eng: "Pricing", amh: "ዋጋ", link: "/pricing" },
+    { eng: "Company", amh: "ስለ እኛ", link: "/company" },
+    { eng: "News", amh: "አዲስ ዜና", link: "/news" },
+  ];
 
   return (
     <>
@@ -54,12 +58,17 @@ export const Navbar = () => {
           <div className="gap-3 nav__item mr-2 lg:flex ml-auto lg:ml-0 lg:order-2">
             <ThemeChanger />
             <div className="hidden mr-3 lg:flex nav__item">
-              <Link
-                href="/"
-                className="px-6 py-2 text-white bg-indigo-600 rounded-md md:ml-5"
-              >
-                {language === "eng" ? "Get Started" : "አሁን ይጀምሩ"}
-              </Link>
+              <SignedOut>
+                {/* Wrap SignInButton with a div to add the className */}
+                <div className="px-6 py-2 text-white bg-indigo-600 rounded-md md:ml-5">
+                  <SignInButton>
+                    {language === "eng" ? "Get Started" : "አሁን ይጀምሩ"}
+                  </SignInButton>
+                </div>
+              </SignedOut>
+              <SignedIn>
+                <UserButton />
+              </SignedIn>
             </div>
           </div>
 
@@ -75,30 +84,29 @@ export const Navbar = () => {
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 24 24"
                   >
-                    {open && (
+                    {open ? (
                       <path
                         fillRule="evenodd"
                         clipRule="evenodd"
                         d="M18.278 16.864a1 1 0 0 1-1.414 1.414l-4.829-4.828-4.828 4.828a1 1 0 0 1-1.414-1.414l4.828-4.829-4.828-4.828a1 1 0 0 1 1.414-1.414l4.829 4.828 4.828-4.828a1 1 0 1 1 1.414 1.414l-4.828 4.829 4.828 4.828z"
                       />
-                    )}
-                    {!open && (
+                    ) : (
                       <path
                         fillRule="evenodd"
-                        d="M4 5h16a1 1 0 0 1 0 2H4a1 1 0 1 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 0 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 1 1 0-2z"
+                        d="M4 5h16a1 1 0 0 1 0 2H4a1 1 0 1 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 1 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 1 1 0-2z"
                       />
                     )}
                   </svg>
                 </Disclosure.Button>
 
                 <Disclosure.Panel className="flex flex-wrap w-full my-5 lg:hidden">
-                  {currentNavigation.map((item, index) => (
+                  {navigation.map((item, index) => (
                     <Link
                       key={index}
-                      href="/"
+                      href={item.link}
                       className="w-full px-4 py-2 -ml-4 text-gray-500 rounded-md dark:text-gray-300 hover:text-indigo-500 focus:text-indigo-500 focus:bg-indigo-100 dark:focus:bg-gray-800 focus:outline-none"
                     >
-                      {item}
+                      {language === "eng" ? item.eng : item.amh}
                     </Link>
                   ))}
                   <Link
@@ -115,13 +123,13 @@ export const Navbar = () => {
           {/* Menu */}
           <div className="hidden text-center lg:flex lg:items-center">
             <ul className="items-center justify-end flex-1 pt-6 list-none lg:pt-0 lg:flex">
-              {currentNavigation.map((menu, index) => (
+              {navigation.map((menu, index) => (
                 <li className="mr-3 nav__item" key={index}>
                   <Link
-                    href="/"
+                    href={menu.link}
                     className="inline-block px-4 py-2 text-lg font-normal text-gray-800 no-underline rounded-md dark:text-gray-200 hover:text-indigo-500 focus:text-indigo-500 focus:bg-indigo-100 focus:outline-none dark:focus:bg-gray-800"
                   >
-                    {menu}
+                    {language === "eng" ? menu.eng : menu.amh}
                   </Link>
                 </li>
               ))}

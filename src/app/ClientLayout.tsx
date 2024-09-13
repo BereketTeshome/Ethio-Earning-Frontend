@@ -9,6 +9,7 @@ import { PopupWidget } from "@/components/PopupWidget";
 import languageReducer from "../store/LanguageSlice";
 import { configureStore } from "@reduxjs/toolkit";
 import { Provider } from "react-redux";
+import { ClerkProvider } from "@clerk/nextjs";
 
 const store = configureStore({
   reducer: {
@@ -27,10 +28,13 @@ export function ClientLayout({
     <div className={inter.className}>
       <ThemeProvider attribute="class">
         <Provider store={store}>
-          <Navbar />
-          <div>{children}</div>
-          <Footer />
-          <PopupWidget />
+          <ClerkProvider>
+            <Navbar />
+
+            <div>{children}</div>
+            <Footer />
+            <PopupWidget />
+          </ClerkProvider>
         </Provider>
       </ThemeProvider>
     </div>

@@ -36,7 +36,7 @@ export function Footer() {
 
             <div className="max-w-md mt-4 text-gray-500 dark:text-gray-400">
               {language === "eng"
-                ? "Ethio Earning is an free Advertising Platform with distinct user roles: Investor, Earner, and System Administrator. The platform leverages modern technologies for enhanced performance, security, and user experience."
+                ? "Ethio Earning is a free Advertising Platform with distinct user roles: Investor, Earner, and System Administrator. The platform leverages modern technologies for enhanced performance, security, and user experience."
                 : "Ethio Earning የተለየ የተጠቃሚ ሚናዎች ያሉት ነፃ የማስታወቂያ መድረክ ነው፡ ባለሀብት፣ ገቢ እና የስርዓት አስተዳዳሪ። መድረኩ ዘመናዊ ቴክኖሎጂዎችን ለተሻሻለ አፈጻጸም፣ ደህንነት እና የተጠቃሚ ተሞክሮ ይጠቀማል።"}
             </div>
 
