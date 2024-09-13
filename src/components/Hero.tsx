@@ -12,12 +12,22 @@ export const Hero = () => {
       <Container className="flex flex-wrap">
         <div className="flex items-center w-full lg:w-1/2">
           <div className="max-w-2xl mb-8">
-            <h1 className="text-4xl font-bold leading-snug tracking-tight text-gray-800 lg:text-4xl lg:leading-tight xl:text-6xl xl:leading-tight dark:text-white">
-              {language === "eng"
-                ? "Empower Your Advertising with Our Platform"
-                : "ማስታወቂያዎን በእኛ መድረክ ያሳድጉ"}
+            <h1 className="text-2xl font-bold leading-snug tracking-tight text-gray-800 lg:leading-tight xl:text-4xl dark:text-white">
+              {language === "eng" ? (
+                <>
+                  Empower Your Advertising
+                  <br />
+                  <span style={{ color: "#4F46E5" }}>with Our Platform</span>
+                </>
+              ) : (
+                <>
+                  ማስታወቂያዎን በእኛ
+                  <span style={{ color: "#4F46E5" }}> መድረክ ያሳድጉ</span>
+                </>
+              )}
             </h1>
-            <p className="py-5 text-xl leading-normal text-gray-500 lg:text-xl xl:text-2xl dark:text-gray-300">
+
+            <p className="py-5 text-md leading-normal text-gray-500 xl:text-xl  dark:text-gray-300">
               {language === "eng"
                 ? "Join our cutting-edge advertising platform designed for Investors, Earners, and Administrators. Leverage the power of modern technology to maximize your returns."
                 : "ለባለሀብቶች፣ ለገቢዎች እና ለአስተዳዳሪዎች የተነደፈውን እጅግ በጣም ጥሩ የማስታወቂያ መድረክን ይቀላቀሉ። ተመላሾችን ከፍ ለማድረግ የዘመናዊ ቴክኖሎጂን ኃይል ይጠቀሙ።"}
