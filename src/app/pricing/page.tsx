@@ -48,7 +48,7 @@ const Pricing: React.FC = () => {
               "የላቀ የተቋማት ክትትል",
               "ቅድሚያ የኢሜል ድጋፍ",
             ],
-            bgColor: "bg-blue-600",
+            bgColor: "bg-indigo-600",
             textColor: "text-white",
             buttonColor: "text-blue-600",
             borderColor: "border-white",
@@ -100,7 +100,7 @@ const Pricing: React.FC = () => {
               "Priority email support",
               "Dedicated account manager",
             ],
-            bgColor: "bg-blue-600",
+            bgColor: "bg-indigo-600",
             textColor: "text-white",
             buttonColor: "text-blue-600",
             borderColor: "border-white",
@@ -154,7 +154,7 @@ const Pricing: React.FC = () => {
                 <ul role="list" className="pt-4 mt-4 space-y-6 border-t">
                   {plan.features.map((feature, index) => (
                     <li key={index} className="flex">
-                      <div className="inline-flex items-center w-6 h-6 bg-blue-600 rounded-xl">
+                      <div className="inline-flex items-center w-6 h-6 bg-indigo-600 rounded-xl">
                         <svg
                           className="flex-shrink-0 w-4 h-4 mx-auto text-white"
                           xmlns="http://www.w3.org/2000/svg"

@@ -3,6 +3,7 @@ import Image from "next/image";
 import { Container } from "@/components/Container";
 import heroImg from "../../public/img/hero.png";
 import { useSelector } from "react-redux";
+import { SignInButton } from "@clerk/nextjs";
 
 export const Hero = () => {
   const language = useSelector((state: any) => state.language.language);
@@ -34,12 +35,13 @@ export const Hero = () => {
             </p>
 
             <div className="flex flex-col items-start space-y-3 sm:space-x-4 sm:space-y-0 sm:items-center sm:flex-row">
-              <a
-                href="/signup"
-                className="px-8 py-4 text-lg font-medium text-center text-white bg-indigo-600 rounded-md hover:bg-indigo-700 transition duration-300"
-              >
-                {language === "eng" ? "Get Started Now" : "አሁን ይጀምሩ"}
-              </a>
+              <div className="cursor-pointer ">
+                <SignInButton>
+                  <p className="px-8 py-4 text-lg font-medium text-center text-white bg-indigo-600 rounded-md hover:bg-indigo-700 transition duration-300">
+                    {language === "eng" ? "Get Started Now" : "አሁን ይጀምሩ"}
+                  </p>
+                </SignInButton>
+              </div>
               <a
                 href="/learn-more"
                 className="flex items-center space-x-2 text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 transition duration-300"
