@@ -50,7 +50,7 @@ const Section = () => {
           : "የማህበራዊ ሚዲያ መገኘትን ለማሳደግ የሚፈልግ ባለሀብትም ሆነ ለሽልማት ስራዎችን የሚያጠናቅቅ ገቢ ፈጣሪ ሆንክ የእኛ መድረክ የማስታወቂያ ግቦችህን እንድታሳካ እንዴት እንደሚረዳህ ለመረዳት ይህን ቪዲዮ ይመልከቱ"}
       </SectionTitle>
 
-      <Video videoId="fZ0D0cnR88E" />
+      <Video videoId="oh2GMHE7PFk" />
 
       <SectionTitle
         preTitle={

@@ -8,3 +8,16 @@
     @apply dark:bg-trueGray-900;
   }
 }
+@keyframes scaleUpDown {
+  0%,
+  100% {
+    transform: scale(1); /* Initial and final size */
+  }
+  50% {
+    transform: scale(1.1); /* Slightly larger size */
+  }
+}
+
+.animate-scaleUpDown {
+  animation: scaleUpDown 6s ease-in-out infinite;
+}
