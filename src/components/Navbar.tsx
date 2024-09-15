@@ -17,7 +17,7 @@ export const Navbar = () => {
     { eng: "Product", amh: "ምርት", link: "/product" },
     { eng: "Features", amh: "ባህሪያት", link: "/features" },
     { eng: "Pricing", amh: "ዋጋ", link: "/pricing" },
-    { eng: "Company", amh: "ስለ እኛ", link: "/company" },
+    { eng: "About Us", amh: "ስለ እኛ", link: "/about" },
     { eng: "News", amh: "አዲስ ዜና", link: "/news" },
   ];
 
@@ -50,14 +50,14 @@ export const Navbar = () => {
                   className="w-16"
                 />
               </span>
-              <span>Ethio Earning</span>
+              <span className="hidden sm:block">Ethio Earning</span>
             </span>
           </Link>
 
           {/* Get Started */}
-          <div className="gap-3 nav__item mr-2 lg:flex ml-auto lg:ml-0 lg:order-2">
+          <div className="gap-1 flex items-center nav__item mr-2 lg:flex ml-auto lg:ml-0 lg:order-2">
             <ThemeChanger />
-            <div className="hidden mr-3 lg:flex nav__item">
+            <div className="mr-3 lg:flex nav__item">
               <SignedOut>
                 {/* Wrap SignInButton with a div to add the className */}
                 <div className="px-6 py-2 text-white bg-indigo-600 rounded-md md:ml-5">
