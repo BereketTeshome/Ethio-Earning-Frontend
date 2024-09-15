@@ -3,11 +3,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { Language } from "@/store/LanguageSlice";
 
-interface AboutProps {
-  language: Language;
-}
-
-const About: React.FC<AboutProps> = () => {
+const About: React.FC = () => {
   const language = useSelector(
     (state: { language: { language: Language } }) => state.language.language
   );
