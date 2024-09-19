@@ -1,6 +1,7 @@
 "use client";
 import { Inter } from "next/font/google";
 import { ThemeProvider } from "next-themes";
+import { usePathname } from "next/navigation"; // Import the usePathname hook
 import "./globals.css";
 
 import { Navbar } from "@/components/Navbar";
@@ -9,7 +10,6 @@ import { PopupWidget } from "@/components/PopupWidget";
 import languageReducer from "../store/LanguageSlice";
 import { configureStore } from "@reduxjs/toolkit";
 import { Provider } from "react-redux";
-import { ClerkProvider } from "@clerk/nextjs";
 
 const store = configureStore({
   reducer: {
@@ -24,17 +24,27 @@ export function ClientLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const pathname = usePathname(); // Get current path
+
+  // Check if the route is 'SignUp' or 'SignIn'
+  const hideNavbarFooter =
+    pathname === "/SignUp" ||
+    pathname === "/SignIn" ||
+    pathname === "/Verify" ||
+    pathname === "/ForgotPassword" ||
+    pathname === "/ResetPassword";
+
   return (
     <div className={inter.className}>
       <ThemeProvider attribute="class">
         <Provider store={store}>
-          <ClerkProvider>
-            <Navbar />
+          {!hideNavbarFooter && <Navbar />}
 
-            <div>{children}</div>
-            <Footer />
-            <PopupWidget />
-          </ClerkProvider>
+          <div>{children}</div>
+
+          {!hideNavbarFooter && <Footer />}
+
+          <PopupWidget />
         </Provider>
       </ThemeProvider>
     </div>

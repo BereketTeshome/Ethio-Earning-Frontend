@@ -3,7 +3,7 @@ import React from "react";
 import { SectionTitle } from "./SectionTitle";
 import { Benefits } from "./Benefits";
 import { Video } from "./Video";
-import { Testimonials } from "./Testimonials";
+// import { Testimonials } from "./Testimonials";
 import { Faq } from "./Faq";
 import { Cta } from "./Cta";
 import { benefitOne, benefitTwo } from "../utils/data";
@@ -52,7 +52,7 @@ const Section = () => {
 
       <Video videoId="oh2GMHE7PFk" />
 
-      <SectionTitle
+      {/* <SectionTitle
         preTitle={
           language === "eng" ? "What Our Users Say" : "ተጠቃሚዎቻችን የሚሉትን ነው"
         }
@@ -61,9 +61,9 @@ const Section = () => {
         {language === "eng"
           ? "Hear from our users about how the platform has transformed their advertising strategies and helped them achieve tangible results."
           : "መድረኩ የማስታወቂያ ስልቶቻቸውን እንዴት እንደለወጠው እና ተጨባጭ ውጤቶችን እንዲያገኙ እንደረዳቸው ከተጠቃሚዎቻችን ይስሙ"}
-      </SectionTitle>
+      </SectionTitle> */}
 
-      <Testimonials />
+      {/* <Testimonials /> */}
 
       <SectionTitle
         preTitle={language === "eng" ? "Have Questions?" : "ጥያቄዎች አሉዎት?"}
