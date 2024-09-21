@@ -5,7 +5,9 @@ import Image from "next/image";
 import { Disclosure } from "@headlessui/react";
 import { useSelector, useDispatch } from "react-redux";
 import { changeLanguage, Language } from "@/store/LanguageSlice";
-import { SignInButton, SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
+import { jwtDecode } from "jwt-decode";
+import { useState, useEffect } from "react";
+import Cookie from "js-cookie";
 
 export const Navbar = () => {
   const language = useSelector(
@@ -13,9 +15,39 @@ export const Navbar = () => {
   );
   const dispatch = useDispatch();
 
+  const [user, setUser] = useState<{ email: string; role: string } | null>(
+    null
+  );
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+
+  // Check if token exists and is valid
+  useEffect(() => {
+    const token = Cookie.get("jwt");
+    console.log(token);
+    if (token) {
+      try {
+        const decodedToken: {
+          userId: string;
+          email: string;
+          role: string;
+          iat: number;
+          exp: number;
+        } = jwtDecode(token);
+        const currentTime = Date.now() / 1000;
+        if (decodedToken.exp > currentTime) {
+          setUser({ email: decodedToken.email, role: decodedToken.role });
+        }
+      } catch (error) {
+        console.error("Invalid token", error);
+      }
+    }
+  }, []);
+
+  const toggleDropdown = () => {
+    setIsDropdownOpen(!isDropdownOpen);
+  };
+
   const navigation = [
-    { eng: "Product", amh: "ምርት", link: "/product" },
-    { eng: "Features", amh: "ባህሪያት", link: "/features" },
     { eng: "Pricing", amh: "ዋጋ", link: "/pricing" },
     { eng: "About Us", amh: "ስለ እኛ", link: "/about" },
     { eng: "News", amh: "አዲስ ዜና", link: "/news" },
@@ -25,19 +57,20 @@ export const Navbar = () => {
     <>
       <div className="w-full">
         {/* Language Selector */}
-        <div className="relative flex items-center m-3 justify-end scale-90">
+        <div className="relative flex gap-3 items-center m-3 justify-end scale-90">
           <select
             value={language}
             onChange={(e) =>
               dispatch(changeLanguage(e.target.value as Language))
             }
-            className="px-4 py-2 text-gray-800 bg-gray-50 rounded-md dark:bg-trueGray-800 dark:text-gray-200 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-indigo-100 focus:ring-opacity-75 dark:focus:ring-gray-700"
+            className="px-3 py-2 text-gray-800 bg-gray-50 rounded-md dark:bg-trueGray-800 dark:text-gray-200 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-indigo-100 focus:ring-opacity-75 dark:focus:ring-gray-700"
           >
             <option value="eng">Eng</option>
             <option value="amh">አማ</option>
           </select>
+          <ThemeChanger />
         </div>
-        <nav className="container relative flex flex-wrap items-center justify-between py-2 px-8 mx-auto lg:justify-between xl:px-1">
+        <nav className="container  relative flex flex-wrap items-center py-2 px-8 mx-auto  xl:px-1">
           {/* Logo  */}
           <Link href="/">
             <span className="flex items-center space-x-2 text-2xl font-medium text-indigo-500 dark:text-gray-100">
@@ -55,22 +88,47 @@ export const Navbar = () => {
           </Link>
 
           {/* Get Started */}
-          <div className="gap-1 flex items-center nav__item mr-2 lg:flex ml-auto lg:ml-0 lg:order-2">
-            <ThemeChanger />
-            <div className="mr-3 lg:flex nav__item">
-              <SignedOut>
-                {/* Wrap SignInButton with a div to add the className */}
-                <div className="px-6 py-2 text-white bg-indigo-600 rounded-md md:ml-5">
-                  <SignInButton>
-                    {language === "eng" ? "Get Started" : "አሁን ይጀምሩ"}
-                  </SignInButton>
-                </div>
-              </SignedOut>
-              <SignedIn>
-                <UserButton />
-              </SignedIn>
+          {user ? (
+            <div className="gap-3 nav__item mr-2 flex ml-auto lg:order-2">
+              <div className="hidden mr-3 lg:flex nav__item">
+                <Link
+                  href="/SignIn"
+                  className="px-6 py-2 text-white bg-indigo-600 rounded-md md:ml-5"
+                >
+                  {language === "eng" ? "Get Started" : "አሁን ይጀምሩ"}
+                </Link>
+              </div>
             </div>
-          </div>
+          ) : (
+            <>
+              <div className="relative flex ml-auto lg:order-2">
+                {isDropdownOpen && (
+                  <div className="absolute right-0 top-9 mt-2 w-48 bg-white border rounded-md shadow-lg py-1">
+                    <Link
+                      href="/EarnerPage"
+                      className="block px-4 py-2 text-gray-800 hover:bg-gray-100"
+                    >
+                      {language === "eng" ? "Dashboard" : "ዳሽቦርድ"}
+                    </Link>
+                    <Link
+                      href="/settings"
+                      className="block px-4 py-2 text-gray-800 hover:bg-gray-100"
+                    >
+                      {language === "eng" ? "Settings" : "ቅንብሮች"}
+                    </Link>
+                  </div>
+                )}
+                <button
+                  className="flex items-center space-x-2"
+                  onClick={toggleDropdown}
+                >
+                  <span className="text-xl font-semibold text-white bg-blue-600 rounded-full w-10 h-10 flex items-center justify-center">
+                    {/* {user.email.charAt(0).toUpperCase()} */}B
+                  </span>
+                </button>
+              </div>
+            </>
+          )}
 
           <Disclosure>
             {({ open }) => (
@@ -93,7 +151,7 @@ export const Navbar = () => {
                     ) : (
                       <path
                         fillRule="evenodd"
-                        d="M4 5h16a1 1 0 0 1 0 2H4a1 1 0 1 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 1 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 1 1 0-2z"
+                        d="M4 5h16a1 1 0 0 1 0 2H4a1 1 0 1 1 0-2zm0 6h16a 1 1 0 0 1 0 2H4a 1 1 0 1 1 0-2zm0 6h16a 1 1 0 0 1 0 2H4a 1 1 0 1 1 0-2z"
                       />
                     )}
                   </svg>
@@ -109,19 +167,21 @@ export const Navbar = () => {
                       {language === "eng" ? item.eng : item.amh}
                     </Link>
                   ))}
-                  <Link
-                    href="/"
-                    className="w-full px-6 py-2 mt-3 text-center text-white bg-indigo-600 rounded-md lg:ml-5"
-                  >
-                    {language === "eng" ? "Get Started" : "አሁን ይጀምሩ"}
-                  </Link>
+                  {!user && (
+                    <Link
+                      href="/SignIn"
+                      className="w-full px-6 py-2 mt-3 text-center text-white bg-indigo-600 rounded-md lg:ml-5"
+                    >
+                      {language === "eng" ? "Get Started" : "አሁን ይጀምሩ"}
+                    </Link>
+                  )}
                 </Disclosure.Panel>
               </>
             )}
           </Disclosure>
 
           {/* Menu */}
-          <div className="hidden text-center lg:flex lg:items-center">
+          <div className="hidden text-center lg:flex ml-[20%]  lg:items-center">
             <ul className="items-center justify-end flex-1 pt-6 list-none lg:pt-0 lg:flex">
               {navigation.map((menu, index) => (
                 <li className="mr-3 nav__item" key={index}>
