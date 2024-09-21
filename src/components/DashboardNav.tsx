@@ -19,7 +19,7 @@ const DashboardNav: React.FC<DashboardNavProps> = ({ toggleSidebar }) => {
     { label: "Dashboard", href: "#" },
     { label: "Settings", href: "#" },
     { label: "Earnings", href: "#" },
-    { label: "Sign out", href: "#" },
+    { label: "Log out", href: "#" },
   ];
 
   return (

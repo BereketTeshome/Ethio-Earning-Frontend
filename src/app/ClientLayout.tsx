@@ -8,12 +8,14 @@ import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { PopupWidget } from "@/components/PopupWidget";
 import languageReducer from "../store/LanguageSlice";
+import componentReducer from "../store/ComponentSlice";
 import { configureStore } from "@reduxjs/toolkit";
 import { Provider } from "react-redux";
 
 const store = configureStore({
   reducer: {
     language: languageReducer,
+    component: componentReducer,
   },
 });
 
@@ -32,8 +34,7 @@ export function ClientLayout({
     pathname === "/SignIn" ||
     pathname === "/Verify" ||
     pathname === "/ForgotPassword" ||
-    pathname === "/EarnerDashboard" ||
-    pathname === "/DashboardTest" ||
+    pathname === "/EarnerPage" ||
     pathname === "/ResetPassword";
 
   return (

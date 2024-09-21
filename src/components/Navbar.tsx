@@ -105,7 +105,7 @@ export const Navbar = () => {
                 {isDropdownOpen && (
                   <div className="absolute right-0 top-9 mt-2 w-48 bg-white border rounded-md shadow-lg py-1">
                     <Link
-                      href="/EarnerDashboard"
+                      href="/EarnerPage"
                       className="block px-4 py-2 text-gray-800 hover:bg-gray-100"
                     >
                       {language === "eng" ? "Dashboard" : "ዳሽቦርድ"}
