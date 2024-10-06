@@ -45,7 +45,7 @@ const AdminDashboard = () => {
       {/* User Management Section */}
       <div className="mb-8">
         <h2 className="text-xl font-semibold text-gray-800 dark:text-gray-300 mb-4">
-          User Management
+          Users Management
         </h2>
         <UserManagementTable />
       </div>

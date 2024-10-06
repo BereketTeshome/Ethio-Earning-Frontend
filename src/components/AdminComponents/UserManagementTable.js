@@ -9,8 +9,8 @@ const UserManagementTable = () => {
   ];
 
   const data = [
-    { name: "John Doe", email: "john@example.com", role: "Admin" },
-    { name: "Jane Doe", email: "jane@example.com", role: "User" },
+    { name: "John Doe", email: "john@example.com", role: "Earner" },
+    { name: "Jane Doe", email: "jane@example.com", role: "Investor" },
     // More users
   ];
 

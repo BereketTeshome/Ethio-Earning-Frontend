@@ -1,6 +1,6 @@
 import AdminDashboard from "@/components/AdminComponents/AdminDashboard";
 import Earnings from "@/components/Earnings";
-import Packages from "@/components/Packages";
+import Packages from "@/components/AdminComponents/Packages";
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
