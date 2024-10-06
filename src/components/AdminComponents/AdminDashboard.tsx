@@ -43,12 +43,10 @@ const AdminDashboard = () => {
       </div>
 
       {/* User Management Section */}
-      <div className="mb-8">
-        <h2 className="text-xl font-semibold text-gray-800 dark:text-gray-300 mb-4">
-          Users Management
-        </h2>
-        <UserManagementTable />
-      </div>
+      <h2 className="text-xl font-semibold text-gray-800 dark:text-gray-300 relative top-5">
+        Users Management
+      </h2>
+      <UserManagementTable />
 
       {/* Payment Management Section */}
       <div className="mb-8">
