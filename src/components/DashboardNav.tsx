@@ -1,6 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import ThemeChanger from "./DarkSwitch";
+import Image from "next/image";
 
 // Define the props interface
 interface DashboardNavProps {
@@ -31,7 +32,7 @@ const DashboardNav: React.FC<DashboardNavProps> = ({ toggleSidebar }) => {
           {/* Toggle Sidebar */}
           <button
             onClick={toggleSidebar}
-            className="inline-flex items-center p-2 text-gray-500 rounded-lg sm:hidden dark:text-gray-400"
+            className="inline-flex items-center p-2 text-gray-500 rounded-lg dark:text-gray-400"
           >
             <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
               <path
@@ -42,14 +43,7 @@ const DashboardNav: React.FC<DashboardNavProps> = ({ toggleSidebar }) => {
             </svg>
           </button>
           <a href="#" className="flex ms-2">
-            <img
-              src="https://flowbite.com/docs/images/logo.svg"
-              className="h-8 me-3"
-              alt="Logo"
-            />
-            <span className="text-xl font-semibold dark:text-white">
-              Ethio Earning
-            </span>
+            <Image src="/logo.png" width="152" alt="Logo" height="152" />
           </a>
         </div>
         <div className="flex items-center">

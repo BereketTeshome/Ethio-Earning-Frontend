@@ -35,16 +35,9 @@ export function Footer() {
           <div className="lg:col-span-2">
             <Link
               href="/"
-              className="flex items-center space-x-2 text-2xl font-medium text-indigo-500 dark:text-gray-100"
+              className="flex items-center space-x-2 mb-9 text-2xl font-medium text-indigo-500 dark:text-gray-100"
             >
-              <Image
-                src="/img/logo.png"
-                alt="Logo"
-                width="32"
-                height="32"
-                className="w-20"
-              />
-              <span>Ethio Earning</span>
+              <Image src="/logo.png" alt="Logo" width="152" height="152" />
             </Link>
             <div className="max-w-md mt-4 text-gray-500 dark:text-gray-400">
               {language === "eng"

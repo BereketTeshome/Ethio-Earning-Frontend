@@ -26,7 +26,9 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
-    "src/store/ComponentSlice.js"
+    "src/store/ComponentSlice.js",
+    "src/components/AdminComponents/UserManagementTable.js",
+    "src/components/AdminComponents/PaymentTransactionsTable.js"
   ],
   "exclude": ["node_modules"]
 }

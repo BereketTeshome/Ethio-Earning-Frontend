@@ -54,7 +54,7 @@ export const Navbar = () => {
   ];
 
   return (
-    <>
+    <div>
       <div className="w-full">
         {/* Language Selector */}
         <div className="relative flex gap-3 items-center m-3 justify-end scale-90">
@@ -73,17 +73,8 @@ export const Navbar = () => {
         <nav className="container  relative flex flex-wrap items-center py-2 px-8 mx-auto  xl:px-1">
           {/* Logo  */}
           <Link href="/">
-            <span className="flex items-center space-x-2 text-2xl font-medium text-indigo-500 dark:text-gray-100">
-              <span>
-                <Image
-                  src="/img/logo.png"
-                  width="32"
-                  alt="Logo"
-                  height="32"
-                  className="w-16"
-                />
-              </span>
-              <span className="hidden sm:block">Ethio Earning</span>
+            <span className="flex items-center ml-10 space-x-2 text-2xl font-medium text-indigo-500 dark:text-gray-100">
+              <Image src="/logo.png" width="152" alt="Logo" height="152" />
             </span>
           </Link>
 
@@ -197,6 +188,6 @@ export const Navbar = () => {
           </div>
         </nav>
       </div>
-    </>
+    </div>
   );
 };

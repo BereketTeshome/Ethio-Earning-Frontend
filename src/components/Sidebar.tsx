@@ -1,9 +1,15 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { FaHome, FaCog, FaMoneyBillAlt, FaSignOutAlt } from "react-icons/fa";
+import {
+  FaHome,
+  FaCog,
+  FaMoneyBillAlt,
+  FaSignOutAlt,
+  FaQuestionCircle,
+} from "react-icons/fa";
 import { RiArrowGoBackLine } from "react-icons/ri";
-import { changeComponent } from "../store/ComponentSlice"; // import your action
+import { changeComponent } from "../store/ComponentSlice"; // Import your action
 
 interface SidebarProps {
   isSidebarOpen: boolean;
@@ -11,15 +17,14 @@ interface SidebarProps {
 
 const Sidebar: React.FC<SidebarProps> = ({ isSidebarOpen }) => {
   const dispatch = useDispatch();
+  const [activeItem, setActiveItem] = useState<string>("dashboard"); // To track the active menu item
 
   const sidebarItems = [
     { label: "Dashboard", icon: <FaHome />, action: "dashboard" },
-    { label: "Settings", icon: <FaCog />, action: "settings" },
-    {
-      label: "Earnings",
-      icon: <FaMoneyBillAlt />,
-      action: "earnings",
-    },
+    { label: "Packages", icon: <FaCog />, action: "packages" },
+    { label: "Earnings", icon: <FaMoneyBillAlt />, action: "earnings" },
+    { label: "Settings", icon: <FaCog />, action: "settings" }, // New menu item
+    { label: "Help", icon: <FaQuestionCircle />, action: "help" }, // New menu item
     {
       label: "Back to Home",
       icon: <RiArrowGoBackLine />,
@@ -29,7 +34,8 @@ const Sidebar: React.FC<SidebarProps> = ({ isSidebarOpen }) => {
   ];
 
   const handleItemClick = (action: string) => {
-    dispatch(changeComponent(action)); // dispatch the redux action to change components
+    setActiveItem(action); // Set the clicked item as active
+    dispatch(changeComponent(action)); // Dispatch the redux action to change components
   };
 
   return (
@@ -38,6 +44,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isSidebarOpen }) => {
         isSidebarOpen ? "translate-x-0" : "-translate-x-full"
       } bg-white border-r border-gray-200 dark:bg-gray-800 dark:border-gray-700 flex flex-col justify-between`}
     >
+      {/* Sidebar Menu Items */}
       <div className="px-3 py-4 overflow-y-auto">
         <ul className="space-y-2">
           {sidebarItems.map((item) => (
@@ -45,7 +52,11 @@ const Sidebar: React.FC<SidebarProps> = ({ isSidebarOpen }) => {
               <a
                 href={item.href}
                 onClick={() => handleItemClick(item.action)}
-                className="flex items-center mt-6 p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 hover:text-[#6366F] dark:hover:bg-gray-700 cursor-pointer"
+                className={`flex items-center mt-6 p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 cursor-pointer ${
+                  activeItem === item.action
+                    ? "bg-[#6366F1] text-white dark:bg-[#6366F1] dark:text-white"
+                    : "hover:text-[#6366F] dark:hover:text-gray-300"
+                }`}
               >
                 <span className="flex-shrink-0 text-lg">{item.icon}</span>
                 <span className="ml-3">{item.label}</span>
@@ -54,6 +65,8 @@ const Sidebar: React.FC<SidebarProps> = ({ isSidebarOpen }) => {
           ))}
         </ul>
       </div>
+
+      {/* Log out Button */}
       <div className="px-3 py-4">
         <ul>
           <li>

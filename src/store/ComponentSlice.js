@@ -1,10 +1,10 @@
-import EarnerDashboard from "@/components/EarnerDashboard";
+import AdminDashboard from "@/components/AdminComponents/AdminDashboard";
 import Earnings from "@/components/Earnings";
-import Settings from "@/components/Settings";
+import Packages from "@/components/Packages";
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  component: <EarnerDashboard />,
+  component: <AdminDashboard />,
   location: "Dashboard",
 };
 
@@ -15,19 +15,19 @@ export const componentSlice = createSlice({
     changeComponent: (state, action) => {
       switch (action.payload) {
         case "dashboard":
-          state.component = <EarnerDashboard />;
+          state.component = <AdminDashboard />;
           state.location = "Dashboard";
           break;
         case "earnings":
           state.component = <Earnings />;
           state.location = "Earnings";
           break;
-        case "settings":
-          state.component = <Settings />;
-          state.location = "Settings";
+        case "packages":
+          state.component = <Packages />;
+          state.location = "Packages";
           break;
         default:
-          state.component = <EarnerDashboard />;
+          state.component = <AdminDashboard />;
           state.location = "Dashboard";
       }
     },
