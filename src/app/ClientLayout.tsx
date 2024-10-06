@@ -35,6 +35,7 @@ export function ClientLayout({
     pathname === "/Verify" ||
     pathname === "/ForgotPassword" ||
     pathname === "/EarnerPage" ||
+    pathname === "/AdminPage" ||
     pathname === "/ResetPassword";
 
   return (
