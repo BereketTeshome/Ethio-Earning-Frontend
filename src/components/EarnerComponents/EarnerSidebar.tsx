@@ -1,21 +1,28 @@
 "use client";
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { FaHome, FaCog, FaSignOutAlt, FaQuestionCircle } from "react-icons/fa";
+import {
+  FaHome,
+  FaCog,
+  FaMoneyBillAlt,
+  FaSignOutAlt,
+  FaQuestionCircle,
+} from "react-icons/fa";
 import { RiArrowGoBackLine } from "react-icons/ri";
-import { changeComponent } from "../store/ComponentSlice"; // Import your action
+import { changeComponent } from "../../store/ComponentSlice"; // Import your action
 
 interface SidebarProps {
   isSidebarOpen: boolean;
 }
 
-const Sidebar: React.FC<SidebarProps> = ({ isSidebarOpen }) => {
+const EarnerSidebar: React.FC<SidebarProps> = ({ isSidebarOpen }) => {
   const dispatch = useDispatch();
   const [activeItem, setActiveItem] = useState<string>("dashboard"); // To track the active menu item
 
   const sidebarItems = [
     { label: "Dashboard", icon: <FaHome />, action: "dashboard" },
-    { label: "Packages", icon: <FaCog />, action: "packages" },
+    { label: "Tasks", icon: <FaCog />, action: "tasks" },
+    { label: "Earnings", icon: <FaMoneyBillAlt />, action: "earnings" },
     { label: "Settings", icon: <FaCog />, action: "settings" }, // New menu item
     { label: "Help", icon: <FaQuestionCircle />, action: "help" }, // New menu item
     {
@@ -65,7 +72,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isSidebarOpen }) => {
           <li>
             <a
               href="#"
-              className="flex items-center p-2 text-base font-normal text-white bg-[#6366F1] rounded-lg hover:bg-blue-700"
+              className="flex items-center p-2 text-center font-normal text-white bg-[#6366F1] rounded-lg hover:bg-blue-700"
             >
               <span className="flex-shrink-0 text-lg">
                 <FaSignOutAlt />
@@ -79,4 +86,4 @@ const Sidebar: React.FC<SidebarProps> = ({ isSidebarOpen }) => {
   );
 };
 
-export default Sidebar;
+export default EarnerSidebar;
