@@ -1,5 +1,6 @@
 "use client";
 import DashboardNav from "@/components/DashboardNav";
+import EarnerSidebar from "@/components/EarnerComponents/EarnerSidebar";
 import Sidebar from "@/components/Sidebar";
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
@@ -14,13 +15,19 @@ const EarnerPage = () => {
     setIsSidebarOpen(!isSidebarOpen);
   };
 
+  const role = "earner";
+
   return (
     <div>
       {/* Pass toggleSidebar to DashboardNav */}
       <DashboardNav toggleSidebar={toggleSidebar} />
 
       {/* Pass isSidebarOpen state to Sidebar */}
-      <Sidebar isSidebarOpen={isSidebarOpen} />
+      {role === "earner" ? (
+        <EarnerSidebar isSidebarOpen={isSidebarOpen} />
+      ) : (
+        <Sidebar isSidebarOpen={isSidebarOpen} />
+      )}
 
       <div
         className={`p-10 pt-16 ${
