@@ -23,8 +23,8 @@ const EarnerSidebar: React.FC<SidebarProps> = ({ isSidebarOpen }) => {
     { label: "Dashboard", icon: <FaHome />, action: "dashboard" },
     { label: "Tasks", icon: <FaCog />, action: "tasks" },
     { label: "Earnings", icon: <FaMoneyBillAlt />, action: "earnings" },
-    { label: "Settings", icon: <FaCog />, action: "settings" }, // New menu item
-    { label: "Help", icon: <FaQuestionCircle />, action: "help" }, // New menu item
+    { label: "Settings", icon: <FaCog />, action: "earnerSetting" },
+    { label: "Help", icon: <FaQuestionCircle />, action: "help" },
     {
       label: "Back to Home",
       icon: <RiArrowGoBackLine />,

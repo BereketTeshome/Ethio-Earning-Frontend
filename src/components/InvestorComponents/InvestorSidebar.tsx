@@ -1,23 +1,47 @@
 "use client";
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { FaHome, FaCog, FaSignOutAlt, FaNewspaper } from "react-icons/fa";
+import {
+  FaHome,
+  FaCog,
+  FaMoneyBillAlt,
+  FaSignOutAlt,
+  FaQuestionCircle,
+  FaBoxes,
+  FaCreditCard,
+  FaBullhorn,
+} from "react-icons/fa";
 import { RiArrowGoBackLine } from "react-icons/ri";
-import { changeComponent } from "../store/ComponentSlice"; // Import your action
+import { changeComponent } from "../../store/ComponentSlice"; // Import your action
 
 interface SidebarProps {
   isSidebarOpen: boolean;
 }
 
-const Sidebar: React.FC<SidebarProps> = ({ isSidebarOpen }) => {
+const InvestorSidebar: React.FC<SidebarProps> = ({ isSidebarOpen }) => {
   const dispatch = useDispatch();
   const [activeItem, setActiveItem] = useState<string>("dashboard"); // To track the active menu item
 
+  // Updated sidebarItems to include new pages
   const sidebarItems = [
     { label: "Dashboard", icon: <FaHome />, action: "dashboard" },
-    { label: "Packages", icon: <FaCog />, action: "packages" },
-    { label: "Settings", icon: <FaCog />, action: "adminSettings" },
-    { label: "News", icon: <FaNewspaper />, action: "news" },
+    {
+      label: "Package Selection",
+      icon: <FaBoxes />,
+      action: "packageSelection",
+    }, // New menu item
+    {
+      label: "Payment & Billing",
+      icon: <FaCreditCard />,
+      action: "paymentBilling",
+    }, // New menu item
+    {
+      label: "Campaign Management",
+      icon: <FaBullhorn />,
+      action: "campaignManagement",
+    }, // New menu item
+    { label: "Settings", icon: <FaCog />, action: "investorSettings" }, // Settings
+    { label: "Help", icon: <FaQuestionCircle />, action: "help" }, // Help
     {
       label: "Back to Home",
       icon: <RiArrowGoBackLine />,
@@ -65,7 +89,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isSidebarOpen }) => {
           <li>
             <a
               href="#"
-              className="flex items-center p-2 text-base font-normal text-white bg-[#6366F1] rounded-lg hover:bg-blue-700"
+              className="flex items-center p-2 text-center font-normal text-white bg-[#6366F1] rounded-lg hover:bg-blue-700"
             >
               <span className="flex-shrink-0 text-lg">
                 <FaSignOutAlt />
@@ -79,4 +103,4 @@ const Sidebar: React.FC<SidebarProps> = ({ isSidebarOpen }) => {
   );
 };
 
-export default Sidebar;
+export default InvestorSidebar;
