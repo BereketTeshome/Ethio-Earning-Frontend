@@ -105,14 +105,17 @@ const BlogPostPage = () => {
             Upload Blog Image
           </Typography>
           <Input
-            accept="image/*"
             id="image-upload"
             type="file"
             onChange={handleImageUpload}
             sx={{
               display: "none",
             }}
+            inputProps={{
+              accept: "image/*",
+            }}
           />
+
           <label htmlFor="image-upload">
             <IconButton
               color="primary"
