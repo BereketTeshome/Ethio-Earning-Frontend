@@ -28,7 +28,8 @@
     ".next/types/**/*.ts",
     "src/store/ComponentSlice.js",
     "src/components/AdminComponents/UserManagementTable.js",
-    "src/components/AdminComponents/PaymentTransactionsTable.js"
+    "src/components/AdminComponents/PaymentTransactionsTable.js",
+    "src/app/Dashboard/page.jsx"
   ],
   "exclude": ["node_modules"]
 }

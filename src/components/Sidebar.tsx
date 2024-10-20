@@ -1,9 +1,10 @@
 "use client";
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { FaHome, FaCog, FaSignOutAlt, FaQuestionCircle } from "react-icons/fa";
+import { FaHome, FaCog, FaSignOutAlt, FaNewspaper } from "react-icons/fa";
 import { RiArrowGoBackLine } from "react-icons/ri";
 import { changeComponent } from "../store/ComponentSlice"; // Import your action
+import { GoPackageDependents } from "react-icons/go";
 
 interface SidebarProps {
   isSidebarOpen: boolean;
@@ -15,9 +16,9 @@ const Sidebar: React.FC<SidebarProps> = ({ isSidebarOpen }) => {
 
   const sidebarItems = [
     { label: "Dashboard", icon: <FaHome />, action: "dashboard" },
-    { label: "Packages", icon: <FaCog />, action: "packages" },
-    { label: "Settings", icon: <FaCog />, action: "settings" }, // New menu item
-    { label: "Help", icon: <FaQuestionCircle />, action: "help" }, // New menu item
+    { label: "Packages", icon: <GoPackageDependents />, action: "packages" },
+    { label: "Settings", icon: <FaCog />, action: "adminSettings" },
+    { label: "News", icon: <FaNewspaper />, action: "news" },
     {
       label: "Back to Home",
       icon: <RiArrowGoBackLine />,

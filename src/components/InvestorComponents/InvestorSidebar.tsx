@@ -7,6 +7,9 @@ import {
   FaMoneyBillAlt,
   FaSignOutAlt,
   FaQuestionCircle,
+  FaBoxes,
+  FaCreditCard,
+  FaBullhorn,
 } from "react-icons/fa";
 import { RiArrowGoBackLine } from "react-icons/ri";
 import { changeComponent } from "../../store/ComponentSlice"; // Import your action
@@ -15,16 +18,30 @@ interface SidebarProps {
   isSidebarOpen: boolean;
 }
 
-const EarnerSidebar: React.FC<SidebarProps> = ({ isSidebarOpen }) => {
+const InvestorSidebar: React.FC<SidebarProps> = ({ isSidebarOpen }) => {
   const dispatch = useDispatch();
   const [activeItem, setActiveItem] = useState<string>("dashboard"); // To track the active menu item
 
+  // Updated sidebarItems to include new pages
   const sidebarItems = [
     { label: "Dashboard", icon: <FaHome />, action: "dashboard" },
-    { label: "Tasks", icon: <FaCog />, action: "tasks" },
-    { label: "Earnings", icon: <FaMoneyBillAlt />, action: "earnings" },
-    { label: "Settings", icon: <FaCog />, action: "earnerSetting" },
-    { label: "Help", icon: <FaQuestionCircle />, action: "help" },
+    {
+      label: "Package Selection",
+      icon: <FaBoxes />,
+      action: "packageSelection",
+    }, // New menu item
+    {
+      label: "Payment & Billing",
+      icon: <FaCreditCard />,
+      action: "paymentBilling",
+    }, // New menu item
+    {
+      label: "Campaign Management",
+      icon: <FaBullhorn />,
+      action: "campaignManagement",
+    }, // New menu item
+    { label: "Settings", icon: <FaCog />, action: "investorSettings" }, // Settings
+    { label: "Help", icon: <FaQuestionCircle />, action: "help" }, // Help
     {
       label: "Back to Home",
       icon: <RiArrowGoBackLine />,
@@ -86,4 +103,4 @@ const EarnerSidebar: React.FC<SidebarProps> = ({ isSidebarOpen }) => {
   );
 };
 
-export default EarnerSidebar;
+export default InvestorSidebar;
