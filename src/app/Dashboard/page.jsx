@@ -7,11 +7,11 @@ import React, { useState } from "react";
 import { useSelector } from "react-redux";
 
 // Define the possible roles
-type Role = "earner" | "admin" | "investor";
+// type Role = "earner" | "admin" | "investor";
 
-const EarnerPage: React.FC = () => {
+const EarnerPage = () => {
   // Manage sidebar open/close state
-  const component = useSelector((state: any) => state.component.component);
+  const component = useSelector((state) => state.component.component);
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
 
   // Toggle sidebar function
@@ -19,7 +19,7 @@ const EarnerPage: React.FC = () => {
     setIsSidebarOpen(!isSidebarOpen);
   };
 
-  const role: Role = "admin"; // Set role dynamically based on actual logic
+  const role = "admin"; // Set role dynamically based on actual logic
 
   return (
     <div>
@@ -27,13 +27,9 @@ const EarnerPage: React.FC = () => {
       <DashboardNav toggleSidebar={toggleSidebar} />
 
       {/* Display the appropriate sidebar based on the role */}
-      {role === "earner" ? (
-        <EarnerSidebar isSidebarOpen={isSidebarOpen} />
-      ) : role === "investor" ? (
-        <InvestorSidebar isSidebarOpen={isSidebarOpen} />
-      ) : (
-        <Sidebar isSidebarOpen={isSidebarOpen} />
-      )}
+      {role === "earner" && <EarnerSidebar isSidebarOpen={isSidebarOpen} />}
+      {role === "investor" && <InvestorSidebar isSidebarOpen={isSidebarOpen} />}
+      {role === "admin" && <Sidebar isSidebarOpen={isSidebarOpen} />}
 
       <div
         className={`p-10 pt-16 ${

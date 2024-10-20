@@ -191,13 +191,7 @@ const Packages: React.FC = () => {
                 label={field.label}
                 value={field.value}
                 type={field.type}
-                onChange={(e) =>
-                  field.setter(
-                    field.type === "number"
-                      ? parseFloat(e.target.value)
-                      : e.target.value
-                  )
-                }
+                onChange={(e: any) => field.setter(e.target.value)}
                 variant="outlined"
                 InputProps={{
                   className: "dark:text-gray-100 dark:border-gray-600",
