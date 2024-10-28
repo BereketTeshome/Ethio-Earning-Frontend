@@ -53,7 +53,7 @@ const SignIn: React.FC = () => {
 
       // Send login request using axios
       const response = await axios.post(
-        "https://ethio-earning-backend.vercel.app/api/users/login",
+        "https://ethio-earning-backend.vercel.app/auth/login",
         {
           email: validatedData.email,
           password: validatedData.password,
@@ -61,15 +61,14 @@ const SignIn: React.FC = () => {
         { withCredentials: true }
       );
 
-      // Extract token from the response (if the backend sends it)
-      const token = response.data.token; // Ensure backend returns token in the response
+      // Extract email and role from the response
+      const { email, role } = response.data.user;
 
-      // Store the token in localStorage
-      if (token) {
-        localStorage.setItem("token", token);
-      }
+      // Store the email and role in localStorage
+      localStorage.setItem("email", email);
+      localStorage.setItem("role", role);
 
-      console.log(response.data);
+      console.log("Login successful:", response.data);
 
       setSuccess(true);
       alert("Login successful!");
@@ -109,7 +108,9 @@ const SignIn: React.FC = () => {
   return (
     <div>
       <section className="relative bg-gray-50 dark:bg-gray-900 min-h-screen justify-center">
-        <GlowingBG />
+        <div className="hidden md:block">
+          <GlowingBG />
+        </div>
         <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
           <p className="flex items-center mb-6 text-2xl font-semibold text-gray-900 dark:text-white">
             <img className="w-12 h-6 mr-2" src="/logo.png" alt="logo" />

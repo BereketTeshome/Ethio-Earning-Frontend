@@ -2,24 +2,26 @@
 import DashboardNav from "@/components/DashboardNav";
 import EarnerSidebar from "@/components/EarnerComponents/EarnerSidebar";
 import Sidebar from "@/components/Sidebar";
-import InvestorSidebar from "@/components/InvestorComponents/InvestorSidebar"; // Import InvestorSidebar
-import React, { useState } from "react";
+import InvestorSidebar from "@/components/InvestorComponents/InvestorSidebar";
+import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
-
-// Define the possible roles
-// type Role = "earner" | "admin" | "investor";
 
 const EarnerPage = () => {
   // Manage sidebar open/close state
   const component = useSelector((state) => state.component.component);
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+  const [role, setRole] = useState(null);
 
   // Toggle sidebar function
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
   };
 
-  const role = "admin"; // Set role dynamically based on actual logic
+  // Retrieve the role from localStorage
+  useEffect(() => {
+    const storedRole = localStorage.getItem("role");
+    setRole(storedRole);
+  }, []);
 
   return (
     <div>
